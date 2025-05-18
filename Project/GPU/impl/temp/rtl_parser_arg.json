@@ -1,0 +1,21 @@
+{
+ "Device" : "GW5AST-138B",
+ "Files" : [
+  {
+   "Path" : "F:/Project/Sipeed/Tang_Primer/MoonCore-GPU/Project/GPU/src/PLL/SYS_PLL.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "F:/Project/Sipeed/Tang_Primer/MoonCore-GPU/Project/GPU/src/GPU/GPU.v",
+   "Type" : "verilog"
+  }
+ ],
+ "IncludePath" : [
+
+ ],
+ "LoopLimit" : 2000,
+ "ResultFile" : "F:/Project/Sipeed/Tang_Primer/MoonCore-GPU/Project/GPU/impl/temp/rtl_parser.result",
+ "Top" : "",
+ "VerilogStd" : "verilog_2001",
+ "VhdlStd" : "vhdl_93"
+}
