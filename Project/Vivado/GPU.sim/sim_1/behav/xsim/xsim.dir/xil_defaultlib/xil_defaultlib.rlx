@@ -1,0 +1,16 @@
+0.6
+2018.3
+Dec  7 2018
+00:33:28
+F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/Display/Disp_PLL.v,1749910709,verilog,,F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/Display/Display.v,,Disp_PLL,,,,,,,,
+F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/Display/Display.v,1749915528,verilog,,F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/Display/Driver.v,,Display;testpattern,,,,,,,,
+F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/Display/Driver.v,1749914634,verilog,,F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/Display/Drv_HDMI.v,,Driver,,,,,,,,
+F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/Display/Drv_HDMI.v,1749913224,verilog,,F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/Display/Drv_LCD.v,,Drv_HDMI;asyn_rst_syn;dvi_encoder;serializer_10_to_1,,,,,,,,
+F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/Display/Drv_LCD.v,1749914920,verilog,,F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/Display/Drv_LCD_SPI.v,,Drv_LCD,,,,,,,,
+F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/Display/Drv_LCD_SPI.v,1749913226,verilog,,F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/Display/Drv_MIPI.v,,Drv_LCD_SPI,,,,,,,,
+F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/Display/Drv_MIPI.v,1749910648,verilog,,F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/Display/Drv_VGA.v,,Drv_MIPI,,,,,,,,
+F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/Display/Drv_VGA.v,1749914929,verilog,,F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/top.v,,Drv_VGA,,,,,,,,
+F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/GPU/BRAM.v,1749916595,verilog,,F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/Display/Disp_PLL.v,,BRAM,,,,,,,,
+F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/ModelSim/tb_top.v,1749913378,verilog,,,,tb_top,,,,,,,,
+F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/top.v,1749913198,verilog,,F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/ModelSim/tb_top.v,,top,,,,,,,,
+F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Vivado/GPU.sim/sim_1/behav/xsim/glbl.v,1544155481,verilog,,,,glbl,,,,,,,,
