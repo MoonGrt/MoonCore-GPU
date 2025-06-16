@@ -3,6 +3,25 @@ Copyright 1986-1999, 2001-2018 Xilinx, Inc. All Rights Reserved.
 Running: G:/Xilinx1/Vivado/2018.3/bin/unwrapped/win64.o/xelab.exe -wto eab03f4bd3214f98b629066c4f63548f --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_top_behav xil_defaultlib.tb_top xil_defaultlib.glbl -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
-WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 24 for port 'wdata' [F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/top.v:51]
+WARNING: [VRFC 10-3091] actual bit length 32 differs from formal bit length 24 for port 'wdata' [F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/top.v:94]
+WARNING: [VRFC 10-3091] actual bit length 32 differs from formal bit length 1 for port 'we' [F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/top.v:96]
 Completed static elaboration
-INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+Starting simulation data flow analysis
+WARNING: [XSIM 43-4099] "F:/Project/FPAG/Project/GPU/MoonCore-GPU/Project/Tang_Primer/src/Mem/BRAM2.v" Line 4. Module BRAM2(DP=32400) doesn't have a timescale but at least one module in design has a timescale.
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.BRAM2(DP=32400)
+Compiling module xil_defaultlib.Disp_PLL
+Compiling module xil_defaultlib.testpattern
+Compiling module xil_defaultlib.Drv_LCD
+Compiling module xil_defaultlib.Drv_VGA
+Compiling module xil_defaultlib.asyn_rst_syn
+Compiling module xil_defaultlib.dvi_encoder
+Compiling module xil_defaultlib.Drv_HDMI
+Compiling module xil_defaultlib.Drv_MIPI
+Compiling module xil_defaultlib.Drv_LCD_SPI
+Compiling module xil_defaultlib.Display
+Compiling module xil_defaultlib.top_default
+Compiling module xil_defaultlib.tb_top
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_top_behav

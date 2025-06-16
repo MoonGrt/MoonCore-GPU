@@ -11,7 +11,7 @@ module Drv_LCD_SPI (
     output wire [11:0] pixel_vpos,   // 当前像素点纵坐标
 
     // SPI LCD输出
-    output wire lcd_resetn,
+    output wire lcd_rstn,
     output wire lcd_clk,
     output wire lcd_cs,
     output wire lcd_rs,
@@ -106,17 +106,10 @@ module Drv_LCD_SPI (
     localparam INIT_WORKING = 4'b0100;  // write command & data
     localparam INIT_DONE = 4'b0101;  // all done
 
-`ifdef MODELTECH
-    localparam CNT_100MS = 32'd2700000;
-    localparam CNT_120MS = 32'd3240000;
-    localparam CNT_200MS = 32'd5400000;
-`else
-    // speedup for simulation
-    localparam CNT_100MS = 32'd27;
-    localparam CNT_120MS = 32'd32;
-    localparam CNT_200MS = 32'd54;
-`endif
-
+    localparam CNT_10MS = 32'd5;  // 32'd500_000
+    localparam CNT_100MS = 32'd50;  // 32'd5_000_000
+    localparam CNT_120MS = 32'd60;  // 32'd6_000_000
+    localparam CNT_200MS = 32'd100;  // 32'd10_000_000
 
     reg [ 3:0] init_state;
     reg [ 6:0] cmd_index;
@@ -135,7 +128,7 @@ module Drv_LCD_SPI (
 
     assign pixel_hpos = pixel_hpos_r;
     assign pixel_vpos = pixel_vpos_r;
-    assign lcd_resetn = lcd_reset_r;
+    assign lcd_rstn   = lcd_reset_r;
     assign lcd_clk    = ~clk;
     assign lcd_cs     = lcd_cs_r;
     assign lcd_rs     = lcd_rs_r;
@@ -238,17 +231,19 @@ module Drv_LCD_SPI (
                         // next byte
                         spi_data <= pixel[7:0];
                         bit_loop <= bit_loop + 1;
-                    end else if (bit_loop == 16) begin
-                        // end
-                        lcd_cs_r  <= 1;
-                        lcd_rs_r  <= 1;
-                        bit_loop  <= 0;
-                        pixel_cnt <= pixel_cnt + 1;  // next pixel
+                        // next pixel
+                        if (pixel_cnt == H_DISP * V_DISP - 1) pixel_cnt <= 0;
+                        else pixel_cnt <= pixel_cnt + 1;
                         if (pixel_hpos_r == H_DISP - 1) begin
                             pixel_hpos_r <= 0;
                             if (pixel_vpos_r == V_DISP - 1) pixel_vpos_r <= 0;
                             else pixel_vpos_r <= pixel_vpos_r + 1;
                         end else pixel_hpos_r <= pixel_hpos_r + 1;
+                    end else if (bit_loop == 16) begin
+                        // end
+                        lcd_cs_r  <= 1;
+                        lcd_rs_r  <= 1;
+                        bit_loop  <= 0;
                     end else begin
                         // loop
                         spi_data <= {spi_data[6:0], 1'b1};

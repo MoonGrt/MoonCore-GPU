@@ -1,9 +1,8 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  \
-"../../../../../Tang_Primer/src/GPU/BRAM.v" \
+"../../../../../Tang_Primer/src/Mem/BRAM2.v" \
 "../../../../../Tang_Primer/src/Display/Disp_PLL.v" \
 "../../../../../Tang_Primer/src/Display/Display.v" \
-"../../../../../Tang_Primer/src/Display/Driver.v" \
 "../../../../../Tang_Primer/src/Display/Drv_HDMI.v" \
 "../../../../../Tang_Primer/src/Display/Drv_LCD.v" \
 "../../../../../Tang_Primer/src/Display/Drv_LCD_SPI.v" \

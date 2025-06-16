@@ -2,7 +2,14 @@
 
 module top (
     input wire clk,  // 时钟
-    input wire rstn  // 复位，低电平有效
+    input wire rstn, // 复位，低电平有效
+
+    output wire spilcd_rstn,
+    output wire spilcd_clk,
+    output wire spilcd_cs,
+    output wire spilcd_rs,
+    output wire spilcd_data,
+    output wire spilcd_bl
 );
 
     // BRAM Parameters
@@ -18,7 +25,6 @@ module top (
     // Display Inputs
     wire [  23:0] spilcd_pixel_data;
     wire          spilcd_pixel_valid;
-    // Display Outputs
     wire [AW-1:0] spilcd_pixel_addr;
     wire          lcd_hs;
     wire          lcd_vs;
@@ -40,23 +46,61 @@ module top (
     wire          spilcd_data;
     wire          spilcd_bl;
 
+    // SYS_PLL
+    wire          sys_clk = clk  /* synthesis syn_keep = 1 */;
+    // wire          sys_clk  /* synthesis syn_keep = 1 */;
+    // SYS_rPLL SYS_rPLL (
+    //     .clkout(sys_clk),  // output clkout
+    //     .reset (1'b0),     // input reset
+    //     .clkin (clk)       // input clkin
+    // );
 
-    BRAM #(
+
+    // SDPB_BRAM SDPB_BRAM (
+    //     .clka  (clk),    //input clka
+    //     .cea   (1'b0),   //input cea
+    //     .reseta(~rstn),  //input reseta
+    //     .ada   (0),      //input [14:0] ada
+    //     .din   (0),      //input [23:0] din
+
+    //     .clkb  (clk),                //input clkb
+    //     .ceb   (1'b1),               //input ceb
+    //     .resetb(~rstn),              //input resetb
+    //     .adb   (spilcd_pixel_addr),  //input [14:0] adb
+    //     .dout  (spilcd_pixel_data),  //output [23:0] dout
+
+    //     .oce(oce)  //input oce
+    // );
+    // BRAM1 #(
+    //     .DP(DP),
+    //     .DW(DW)
+    // ) BRAM (
+    //     .clk   (clk),
+    //     .rst   (~rstn),
+    //     .addr  (spilcd_pixel_addr),
+    //     .wdata (0),
+    //     .sel   (sel),
+    //     .we    (0),
+    //     .rdata (spilcd_pixel_data),
+    //     .rvalid(spilcd_pixel_valid)
+    // );
+    BRAM2 #(
         .DP(DP),
         .DW(DW)
     ) BRAM (
         .clk   (clk),
         .rst   (~rstn),
         .addr  (spilcd_pixel_addr),
-        .wdata (data),
+        .wdata (0),
         .sel   (sel),
-        .we    (data_valid),
+        .we    (0),
         .rdata (spilcd_pixel_data),
         .rvalid(spilcd_pixel_valid)
     );
 
+
     Display Display (
-        .clk (clk),
+        .clk (sys_clk),
         .rstn(rstn),
 
         // LCD
@@ -82,7 +126,7 @@ module top (
         .spilcd_pixel_data (spilcd_pixel_data),
         .spilcd_pixel_valid(spilcd_pixel_valid),
         .spilcd_pixel_addr (spilcd_pixel_addr),
-        .spilcd_resetn     (spilcd_resetn),
+        .spilcd_rstn       (spilcd_rstn),
         .spilcd_clk        (spilcd_clk),
         .spilcd_cs         (spilcd_cs),
         .spilcd_rs         (spilcd_rs),

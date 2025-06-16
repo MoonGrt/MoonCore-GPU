@@ -2,7 +2,7 @@
 module tb_top;
 
     // top Parameters
-    parameter T = 20;
+    parameter T = 10;
 
     // top Inputs
     reg clk = 0;

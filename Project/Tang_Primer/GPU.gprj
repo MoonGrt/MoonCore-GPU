@@ -3,11 +3,23 @@
 <Project>
     <Template>FPGA</Template>
     <Version>5</Version>
-    <Device name="GW5AST-138B" pn="GW5AST-LV138FPG676AES">gw5ast138b-002</Device>
+    <Device name="GW2A-18C" pn="GW2A-LV18PG256C8/I7">gw2a18c-011</Device>
     <FileList>
-        <File path="src/GPU/Display.v" type="file.verilog" enable="1"/>
+        <File path="src/Display/Disp_PLL.v" type="file.verilog" enable="1"/>
+        <File path="src/Display/Display.v" type="file.verilog" enable="1"/>
+        <File path="src/Display/Drv_HDMI.v" type="file.verilog" enable="1"/>
+        <File path="src/Display/Drv_LCD.v" type="file.verilog" enable="1"/>
+        <File path="src/Display/Drv_LCD_SPI.v" type="file.verilog" enable="1"/>
+        <File path="src/Display/Drv_MIPI.v" type="file.verilog" enable="1"/>
+        <File path="src/Display/Drv_VGA.v" type="file.verilog" enable="1"/>
         <File path="src/GPU/GPU.v" type="file.verilog" enable="1"/>
+        <File path="src/Mem/BRAM1.v" type="file.verilog" enable="1"/>
+        <File path="src/Mem/BRAM2.v" type="file.verilog" enable="1"/>
+        <File path="src/Mem/SDPB_BRAM/SDPB_BRAM.v" type="file.verilog" enable="1"/>
+        <File path="src/PLL/SYS_rPLL.v" type="file.verilog" enable="1"/>
+        <File path="src/top.v" type="file.verilog" enable="1"/>
         <File path="src/GPU.cst" type="file.cst" enable="1"/>
         <File path="src/GPU.sdc" type="file.sdc" enable="1"/>
+        <File path="src/GPU.rao" type="file.gao" enable="0"/>
     </FileList>
 </Project>
