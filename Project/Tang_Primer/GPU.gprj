@@ -13,9 +13,10 @@
         <File path="src/Display/Drv_MIPI.v" type="file.verilog" enable="1"/>
         <File path="src/Display/Drv_VGA.v" type="file.verilog" enable="1"/>
         <File path="src/GPU/GPU.v" type="file.verilog" enable="1"/>
-        <File path="src/Mem/BRAM1.v" type="file.verilog" enable="1"/>
         <File path="src/Mem/BRAM2.v" type="file.verilog" enable="1"/>
-        <File path="src/Mem/SDPB_BRAM/SDPB_BRAM.v" type="file.verilog" enable="1"/>
+        <File path="src/Mem/DPRAM.v" type="file.verilog" enable="1"/>
+        <File path="src/Mem/SDPBRAM3.v" type="file.verilog" enable="1"/>
+        <File path="src/Mem/SDPRAM.v" type="file.verilog" enable="1"/>
         <File path="src/PLL/SYS_rPLL.v" type="file.verilog" enable="1"/>
         <File path="src/top.v" type="file.verilog" enable="1"/>
         <File path="src/GPU.cst" type="file.cst" enable="1"/>

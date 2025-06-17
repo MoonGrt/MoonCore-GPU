@@ -13,89 +13,87 @@ module top (
 );
 
     // BRAM Parameters
+    parameter FILE_BASE = "F:/Project/FPAG/Project/GPU/MoonCore-GPU/Tool/init_ram";
     parameter DP = 135 * 240;
-    parameter DW = 24;
+    parameter DW = 8;
     parameter MW = DW / 8;
-    parameter AW = $clog2(DP);
+    parameter AW = $clog2(DP) - 1;
+    parameter N = 3;
+    parameter BDW = DW * N - 1;
     // BRAM Inputs
     reg           we = 0;
     reg  [DW-1:0] wdata = 0;
     reg  [MW-1:0] sel = {MW{1'b1}};
 
     // Display Inputs
-    wire [  23:0] spilcd_pixel_data;
     wire          spilcd_pixel_valid;
-    wire [AW-1:0] spilcd_pixel_addr;
+    wire [ BDW:0] spilcd_pixel_data;
+    wire [  AW:0] spilcd_pixel_addr;
     wire          lcd_hs;
     wire          lcd_vs;
     wire          lcd_en;
-    wire [  23:0] lcd_data;
+    wire [ BDW:0] lcd_data;
     wire          vga_hs;
     wire          vga_vs;
     wire          vga_en;
-    wire [  23:0] vga_data;
+    wire [ BDW:0] vga_data;
     wire          hdmi_tmds_clk_p;
     wire          hdmi_tmds_clk_n;
     wire [   2:0] hdmi_tmds_data_p;
     wire [   2:0] hdmi_tmds_data_n;
     wire          hdmi_tmds_oen;
-    wire          spilcd_resetn;
-    wire          spilcd_clk;
-    wire          spilcd_cs;
-    wire          spilcd_rs;
-    wire          spilcd_data;
-    wire          spilcd_bl;
 
     // SYS_PLL
-    wire          sys_clk = clk  /* synthesis syn_keep = 1 */;
-    // wire          sys_clk  /* synthesis syn_keep = 1 */;
-    // SYS_rPLL SYS_rPLL (
-    //     .clkout(sys_clk),  // output clkout
-    //     .reset (1'b0),     // input reset
-    //     .clkin (clk)       // input clkin
+    // wire          sys_clk = clk  /* synthesis syn_keep = 1 */;
+    wire          sys_clk  /* synthesis syn_keep = 1 */;
+    SYS_rPLL SYS_rPLL (
+        .clkout(sys_clk),  // output clkout
+        .reset (1'b0),     // input reset
+        .clkin (clk)       // input clkin
+    );
+
+
+    // DPBRAM3 #(
+    //     .FILE_BASE(FILE_BASE),
+    //     .DP       (DP),
+    //     .DW       (DW),
+    //     .N        (N),
+    //     .AW       (AW),
+    //     .BDW      (BDW)
+    // ) DPBRAM3 (
+    //     .clka (clk),
+    //     .rsta (~rstn),
+    //     .cea  (1'b1),
+    //     .wra  (1'b1),
+    //     .addra(),
+    //     .dina (),
+    //     .douta(),
+    //     .clkb (clk),
+    //     .rstb (~rstn),
+    //     .ceb  (1'b1),
+    //     .wrb  (1'b0),
+    //     .addrb(spilcd_pixel_addr),
+    //     .dinb (),
+    //     .doutb(spilcd_pixel_data)
     // );
-
-
-    // SDPB_BRAM SDPB_BRAM (
-    //     .clka  (clk),    //input clka
-    //     .cea   (1'b0),   //input cea
-    //     .reseta(~rstn),  //input reseta
-    //     .ada   (0),      //input [14:0] ada
-    //     .din   (0),      //input [23:0] din
-
-    //     .clkb  (clk),                //input clkb
-    //     .ceb   (1'b1),               //input ceb
-    //     .resetb(~rstn),              //input resetb
-    //     .adb   (spilcd_pixel_addr),  //input [14:0] adb
-    //     .dout  (spilcd_pixel_data),  //output [23:0] dout
-
-    //     .oce(oce)  //input oce
-    // );
-    // BRAM1 #(
-    //     .DP(DP),
-    //     .DW(DW)
-    // ) BRAM (
-    //     .clk   (clk),
-    //     .rst   (~rstn),
-    //     .addr  (spilcd_pixel_addr),
-    //     .wdata (0),
-    //     .sel   (sel),
-    //     .we    (0),
-    //     .rdata (spilcd_pixel_data),
-    //     .rvalid(spilcd_pixel_valid)
-    // );
-    BRAM2 #(
-        .DP(DP),
-        .DW(DW)
-    ) BRAM (
-        .clk   (clk),
-        .rst   (~rstn),
-        .addr  (spilcd_pixel_addr),
-        .wdata (0),
-        .sel   (sel),
-        .we    (0),
-        .rdata (spilcd_pixel_data),
-        .rvalid(spilcd_pixel_valid)
+    SDPBRAM3 #(
+        .FILE_BASE(FILE_BASE),
+        .DP       (DP),
+        .DW       (DW),
+        .N        (N),
+        .AW       (AW),
+        .BDW      (BDW)
+    ) SDPBRAM3 (
+        .clka (clk),
+        .rsta (~rstn),
+        .cea  (1'b1),
+        .addra(),
+        .dina (),
+        .clkb (clk),
+        .rstb (~rstn),
+        .ceb  (1'b1),
+        .addrb(spilcd_pixel_addr),
+        .doutb(spilcd_pixel_data)
     );
 
 
